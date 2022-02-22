@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_ui/components/big_text.dart';
 import 'package:food_ui/components/button_background.dart';
 import 'package:food_ui/components/button_border_radius.dart';
-import 'package:food_ui/components/dimensions.dart';
+import 'package:food_ui/utils/dimensions.dart';
 import 'package:food_ui/components/expandable_text_widget.dart';
 import 'package:food_ui/screens/recommended_food_detail/components/bottom_bar_bottom.dart';
 import 'package:food_ui/utils/colors.dart';
@@ -54,7 +54,7 @@ class _RecommenededFoodDetailState extends State<RecommenededFoodDetail> {
             ),
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset("assets/image/food0.png",width: double.maxFinite,fit: BoxFit.cover,),
+              background: Image.asset("assets/images/food0.png",width: double.maxFinite,fit: BoxFit.cover,),
             ),
           ),
           //body
