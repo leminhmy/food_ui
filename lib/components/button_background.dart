@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_ui/utils/colors.dart';
 
-import 'dimensions.dart';
+import '../utils/dimensions.dart';
 
 class ButtonBackground extends StatelessWidget {
   ButtonBackground({

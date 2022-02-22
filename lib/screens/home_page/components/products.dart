@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:food_ui/components/big_text.dart';
-import 'package:food_ui/components/dimensions.dart';
+import 'package:food_ui/controllers/recommended_product_controller.dart';
+import 'package:food_ui/utils/colors.dart';
+import 'package:food_ui/utils/dimensions.dart';
 import 'package:food_ui/components/small_text.dart';
 import 'package:food_ui/screens/home_page/components/product_card.dart';
+import 'package:get/get.dart';
 
 class Products extends StatelessWidget {
   const Products({
@@ -20,26 +23,30 @@ class Products extends StatelessWidget {
           SizedBox(
             height: Dimensions.height30,
           ),
-          listProduct()
+          GetBuilder<RecommendedProductController>(builder: (recommendedProduct){
+            return recommendedProduct.isLoaded?listProduct(recommendedProduct):
+            CircularProgressIndicator(color: AppColors.mainColor,);
+
+          })
         ],
       ),
     );
   }
 }
 
-listProduct() {
+listProduct(RecommendedProductController recommendedProduct) {
   return ListView.builder(
-      itemCount: 5,
+      itemCount: recommendedProduct.recommendedProductList.length,
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        return const ProductCard();
+        return  ProductCard(recommendedProduct: recommendedProduct.recommendedProductList[index],);
       });
 }
 
 labelProduct() {
   return Row(
     children: [
-      BigText(text: "Popular"),
+      BigText(text: "Recommended"),
       SizedBox(
         width: Dimensions.width10,
       ),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:food_ui/components/dimensions.dart';
+import 'package:food_ui/utils/dimensions.dart';
 
 class BigText extends StatelessWidget {
    BigText(
       {Key? key,
         required this.text,
-        this.size = 22,
+        this.size = 18,
         this.color = const Color(0xFF332d2b), this.textOverflow = TextOverflow.ellipsis, this.fontWeight=FontWeight.w500})
       : super(key: key);
 
@@ -22,7 +22,7 @@ class BigText extends StatelessWidget {
       overflow: textOverflow,
       maxLines: 1,
       style: TextStyle(
-          color: color, fontSize: size==22?Dimensions.font22:size, fontFamily: "Roboto",fontWeight: fontWeight),
+          color: color, fontSize: size==18?Dimensions.font18:size, fontFamily: "Roboto",fontWeight: fontWeight),
     );
   }
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:food_ui/components/big_text.dart';
-import 'package:food_ui/components/dimensions.dart';
+import 'package:food_ui/controllers/recommended_product_controller.dart';
+import 'package:food_ui/models/products_model.dart';
+import 'package:food_ui/utils/app_contants.dart';
+import 'package:food_ui/utils/dimensions.dart';
 import 'package:food_ui/components/icon_and_text.dart';
 import 'package:food_ui/components/small_text.dart';
 import 'package:food_ui/utils/colors.dart';
@@ -8,8 +11,10 @@ import 'package:food_ui/utils/colors.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
-    Key? key,
+    Key? key,required this.recommendedProduct,
   }) : super(key: key);
+
+  final ProductsModel recommendedProduct;
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +28,13 @@ class ProductCard extends StatelessWidget {
           ClipRRect(
               borderRadius: BorderRadius.all(
                   Radius.circular(Dimensions.radius20)),
-              child: Image.asset(
-                "assets/image/food1.png",
+              child: Image.network(
+                AppConstants.BASE_URL+AppConstants.UPLOAD_URL+recommendedProduct.img!,
                 fit: BoxFit.cover,
                 height: Dimensions.pageViewTextContainer,
-              )),
+                width: Dimensions.pageViewTextContainer,
+              )
+          ),
           //information product
           Expanded(
             child: Container(

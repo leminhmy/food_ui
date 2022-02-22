@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_ui/components/button_background.dart';
-import 'package:food_ui/components/dimensions.dart';
+import 'package:food_ui/utils/dimensions.dart';
 import 'components/body_widget.dart';
 import 'components/bottom_bar.dart';
 
@@ -41,7 +41,7 @@ imageAppbar() {
   return SizedBox(
       height: Dimensions.pageView,
       child: Image.asset(
-        "assets/image/food0.png",
+        "assets/images/food0.png",
         fit: BoxFit.cover,
       ));
 }
