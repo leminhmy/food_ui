@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:food_ui/components/big_text.dart';
 import 'package:food_ui/components/button_border_radius.dart';
+import 'package:food_ui/models/products_model.dart';
 import 'package:food_ui/utils/dimensions.dart';
 import 'package:food_ui/utils/colors.dart';
 
 class BottomBar extends StatelessWidget {
   BottomBar({
-    Key? key,
+    Key? key, required this.productPopularDetail,
   }) : super(key: key);
+
+  final ProductsModel productPopularDetail;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +42,7 @@ class BottomBar extends StatelessWidget {
             ],
           ),),
           //addToCard
-          ButtonBorderRadius(widget: BigText(text: "\$0.08 Add to cart",color: Colors.white,),colorBackground: AppColors.mainColor,)
+          ButtonBorderRadius(widget: BigText(text: "\$ ${productPopularDetail.price} | Add to cart",color: Colors.white,),colorBackground: AppColors.mainColor,)
         ],
       ),
     );

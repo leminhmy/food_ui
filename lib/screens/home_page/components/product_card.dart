@@ -55,7 +55,7 @@ class ProductCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  BigText(text: "Nuritious fruit meal"),
+                  BigText(text: recommendedProduct.name!),
                   SmallText(text: "Width chinese charaterstics"),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

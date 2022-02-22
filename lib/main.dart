@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_ui/controllers/popular_product_controller.dart';
 import 'package:food_ui/controllers/recommended_product_controller.dart';
+import 'package:food_ui/routes/route_helper.dart';
 import 'package:food_ui/screens/home_page/home_page.dart';
 import 'package:food_ui/screens/popular_food_detail/popular_food_detail.dart';
 import 'package:food_ui/screens/recommended_food_detail/recommended_food_detail.dart';
@@ -29,6 +30,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const HomePage(),
+      // initialRoute: RouteHelper.initial,
+      getPages: RouteHelper.routes,
     );
   }
 }

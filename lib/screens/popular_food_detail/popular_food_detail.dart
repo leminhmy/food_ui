@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:food_ui/components/button_background.dart';
+import 'package:food_ui/controllers/popular_product_controller.dart';
+import 'package:food_ui/models/products_model.dart';
+import 'package:food_ui/screens/home_page/home_page.dart';
+import 'package:food_ui/utils/app_contants.dart';
 import 'package:food_ui/utils/dimensions.dart';
 import 'components/body_widget.dart';
 import 'components/bottom_bar.dart';
+import 'package:get/get.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail({Key? key}) : super(key: key);
+  int pageId;
+  PopularFoodDetail({Key? key,required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product = Get.find<PopularProductController>().popularProductList[pageId];
     return Scaffold(
       body: Stack(
         children: [
           Positioned(
             right: 0,
             left: 0,
-            child: imageAppbar(),
+            child: imageAppbar(product),
           ),
           Positioned(
             right: Dimensions.width20,
@@ -28,20 +35,20 @@ class PopularFoodDetail extends StatelessWidget {
             left: 0,
             bottom: 0,
             top: Dimensions.pageView - Dimensions.height20,
-            child: BodyWidget(),
+            child: BodyWidget(productsPopularDetail: product),
           ),
         ],
       ),
-      bottomNavigationBar: BottomBar(),
+      bottomNavigationBar: BottomBar(productPopularDetail: product),
     );
   }
 }
 
-imageAppbar() {
+imageAppbar(ProductsModel product) {
   return SizedBox(
       height: Dimensions.pageView,
-      child: Image.asset(
-        "assets/images/food0.png",
+      child: Image.network(
+        AppConstants.BASE_URL + AppConstants.UPLOAD_URL +product.img!,
         fit: BoxFit.cover,
       ));
 }
@@ -52,11 +59,14 @@ appBarActions() {
     children: [
       ButtonBackground(
         icon: Icons.arrow_back_ios_outlined,
-        press: () {},
+        press: () {
+          Get.back();
+        },
       ),
       ButtonBackground(
         icon: Icons.shopping_cart_outlined,
-        press: () {},
+        press: () {
+        },
       ),
     ],
   );

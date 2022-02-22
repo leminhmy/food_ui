@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_ui/components/big_text.dart';
 import 'package:food_ui/controllers/recommended_product_controller.dart';
+import 'package:food_ui/routes/route_helper.dart';
 import 'package:food_ui/utils/colors.dart';
 import 'package:food_ui/utils/dimensions.dart';
 import 'package:food_ui/components/small_text.dart';
@@ -36,10 +37,15 @@ class Products extends StatelessWidget {
 
 listProduct(RecommendedProductController recommendedProduct) {
   return ListView.builder(
+    physics: const NeverScrollableScrollPhysics(),
       itemCount: recommendedProduct.recommendedProductList.length,
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        return  ProductCard(recommendedProduct: recommendedProduct.recommendedProductList[index],);
+        return  GestureDetector(
+            onTap: (){
+              Get.toNamed(RouteHelper.getRecommendedFood(index));
+            },
+            child: ProductCard(recommendedProduct: recommendedProduct.recommendedProductList[index],));
       });
 }
 

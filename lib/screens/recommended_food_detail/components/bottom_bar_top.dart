@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:food_ui/components/big_text.dart';
 import 'package:food_ui/components/button_background.dart';
+import 'package:food_ui/models/products_model.dart';
 import 'package:food_ui/utils/dimensions.dart';
 import 'package:food_ui/utils/colors.dart';
 
 class BottomBarTop extends StatelessWidget {
   BottomBarTop({
-    Key? key,
+    Key? key, required this.product,
   }) : super(key: key);
+
+  final ProductsModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,7 @@ class BottomBarTop extends StatelessWidget {
               SizedBox(width: Dimensions.width40,),
               Row(
                 children: [
-                  BigText(text: "\$12.88",),
+                  BigText(text: "\$ ${product.price!}",),
                   SizedBox(width: Dimensions.width5,),
                   BigText(text: "X"),
                   SizedBox(width: Dimensions.width5,),

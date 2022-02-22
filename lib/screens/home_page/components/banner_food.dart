@@ -1,6 +1,8 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:food_ui/controllers/popular_product_controller.dart';
+import 'package:food_ui/routes/route_helper.dart';
+import 'package:food_ui/screens/popular_food_detail/popular_food_detail.dart';
 import 'package:food_ui/utils/dimensions.dart';
 import 'package:food_ui/utils/colors.dart';
 import 'package:get/get.dart';

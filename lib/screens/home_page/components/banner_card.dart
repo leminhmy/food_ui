@@ -6,6 +6,9 @@ import 'package:food_ui/utils/dimensions.dart';
 import 'package:food_ui/components/icon_and_text.dart';
 import 'package:food_ui/components/small_text.dart';
 import 'package:food_ui/utils/colors.dart';
+import 'package:get/get.dart';
+
+import '../../../routes/route_helper.dart';
 
 class BannerCard extends StatelessWidget {
   const BannerCard({
@@ -61,15 +64,20 @@ class BannerCard extends StatelessWidget {
           child: Stack(
             children: [
               //imageBackground banner
-              Container(
-                height: Dimensions.pageViewContainer,
-                decoration: BoxDecoration(
-                  color: index.isEven?Color(0xFF69c5df):Color(0xFF9294cc),
-                    image: DecorationImage(
-                        image: NetworkImage(AppConstants.BASE_URL+AppConstants.UPLOAD_URL+popularProduct.img!),
-                        fit: BoxFit.cover),
-                    borderRadius:
-                        BorderRadius.all(Radius.circular(Dimensions.radius30))),
+              GestureDetector(
+                onTap: (){
+                  Get.toNamed(RouteHelper.getPopularFood(index));
+                },
+                child: Container(
+                  height: Dimensions.pageViewContainer,
+                  decoration: BoxDecoration(
+                    color: index.isEven?Color(0xFF69c5df):Color(0xFF9294cc),
+                      image: DecorationImage(
+                          image: NetworkImage(AppConstants.BASE_URL+AppConstants.UPLOAD_URL+popularProduct.img!),
+                          fit: BoxFit.cover),
+                      borderRadius:
+                          BorderRadius.all(Radius.circular(Dimensions.radius30))),
+                ),
               ),
 
               //information banner

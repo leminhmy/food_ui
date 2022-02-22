@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_ui/components/big_text.dart';
+import 'package:food_ui/models/products_model.dart';
 import 'package:food_ui/utils/dimensions.dart';
 import 'package:food_ui/components/icon_and_text.dart';
 import 'package:food_ui/components/small_text.dart';
@@ -7,15 +8,17 @@ import 'package:food_ui/utils/colors.dart';
 
 class HeaderFood extends StatelessWidget {
    HeaderFood({
-    Key? key,
+    Key? key, required this.productPopularDetail,
   }) : super(key: key);
+
+   final ProductsModel productPopularDetail;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        BigText(text: "Chinese Side",color: AppColors.mainBlackColor,),
+        BigText(text: productPopularDetail.name!,color: AppColors.mainBlackColor,),
         SizedBox(height: Dimensions.height10,),
         Row(
           children: [
