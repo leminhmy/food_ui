@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_ui/components/button_background.dart';
+import 'package:food_ui/controllers/cart_controller.dart';
 import 'package:food_ui/controllers/popular_product_controller.dart';
 import 'package:food_ui/models/products_model.dart';
 import 'package:food_ui/screens/home_page/home_page.dart';
@@ -16,6 +17,7 @@ class PopularFoodDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var product = Get.find<PopularProductController>().popularProductList[pageId];
+    Get.find<PopularProductController>().initProduct(Get.find<CartController>());
     return Scaffold(
       body: Stack(
         children: [
