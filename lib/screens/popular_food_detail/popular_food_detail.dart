@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:food_ui/components/button_background.dart';
+import 'package:food_ui/components/big_text.dart';
+import 'package:food_ui/components/icon_background_border_radius.dart';
 import 'package:food_ui/controllers/cart_controller.dart';
 import 'package:food_ui/controllers/popular_product_controller.dart';
 import 'package:food_ui/models/products_model.dart';
+import 'package:food_ui/routes/route_helper.dart';
+import 'package:food_ui/screens/cart_page/cart_page.dart';
 import 'package:food_ui/screens/home_page/home_page.dart';
 import 'package:food_ui/utils/app_contants.dart';
+import 'package:food_ui/utils/colors.dart';
 import 'package:food_ui/utils/dimensions.dart';
 import 'components/body_widget.dart';
 import 'components/bottom_bar.dart';
@@ -12,12 +16,15 @@ import 'package:get/get.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   int pageId;
-  PopularFoodDetail({Key? key,required this.pageId}) : super(key: key);
+
+  PopularFoodDetail({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var product = Get.find<PopularProductController>().popularProductList[pageId];
-    Get.find<PopularProductController>().initProduct(Get.find<CartController>());
+    var product =
+        Get.find<PopularProductController>().popularProductList[pageId];
+    Get.find<PopularProductController>()
+        .initProduct(product, Get.find<CartController>());
     return Scaffold(
       body: Stack(
         children: [
@@ -50,7 +57,7 @@ imageAppbar(ProductsModel product) {
   return SizedBox(
       height: Dimensions.pageView,
       child: Image.network(
-        AppConstants.BASE_URL + AppConstants.UPLOAD_URL +product.img!,
+        AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img!,
         fit: BoxFit.cover,
       ));
 }
@@ -59,17 +66,46 @@ appBarActions() {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-      ButtonBackground(
+      IconBackgroundBorderRadius(
         icon: Icons.arrow_back_ios_outlined,
         press: () {
-          Get.back();
+          Get.toNamed(RouteHelper.initial);
         },
       ),
-      ButtonBackground(
-        icon: Icons.shopping_cart_outlined,
-        press: () {
-        },
-      ),
+      GetBuilder<PopularProductController>(builder: (controller) {
+        return Stack(
+          children: [
+            IconBackgroundBorderRadius(
+              icon: Icons.shopping_cart_outlined,
+              press: () {
+                Get.to(()=> CartPage());
+                print("tap");
+              },
+            ),
+            Get.find<PopularProductController>().totalItems >= 1
+                ? Positioned(
+                  right: 0,top: 0,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      IconBackgroundBorderRadius(
+                          icon: Icons.circle,
+                          size: 20,
+                          iconColor: Colors.transparent,
+                          backgroundColor: AppColors.mainColor,
+                          sizeHeight: 20,
+                          press: () {},
+                        ),
+                      Align(
+                        alignment: Alignment.center,
+                          child: BigText(text: Get.find<PopularProductController>().totalItems.toString(),color: Colors.white,size: Dimensions.font12,)),
+                    ],
+                  ),
+                )
+                : Container(),
+          ],
+        );
+      }),
     ],
   );
 }

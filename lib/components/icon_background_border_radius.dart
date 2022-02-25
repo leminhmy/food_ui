@@ -3,8 +3,8 @@ import 'package:food_ui/utils/colors.dart';
 
 import '../utils/dimensions.dart';
 
-class ButtonBackground extends StatelessWidget {
-  ButtonBackground({
+class IconBackgroundBorderRadius extends StatelessWidget {
+  IconBackgroundBorderRadius({
     Key? key,
     required this.icon,
     this.backgroundColor = Colors.white,

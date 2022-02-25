@@ -46,7 +46,7 @@ class BottomBar extends StatelessWidget {
                 SizedBox(
                   width: Dimensions.width10,
                 ),
-                BigText(text: popularProduct.quantity.toString()),
+                BigText(text: popularProduct.inCarItems.toString()),
                 SizedBox(
                   width: Dimensions.width10,
                 ),
