@@ -62,17 +62,17 @@ class BottomBar extends StatelessWidget {
               ],
             )),
             //addToCard
-            ButtonBorderRadius(
-              widget: GestureDetector(
-                onTap: (){
-                  popularProduct.addItem(productPopularDetail);
-                },
-                child: BigText(
+            GestureDetector(
+              onTap: (){
+                popularProduct.addItem(productPopularDetail);
+              },
+              child: ButtonBorderRadius(
+                widget: BigText(
                   text: "\$ ${productPopularDetail.price} | Add to cart",
                   color: Colors.white,
                 ),
+                colorBackground: AppColors.mainColor,
               ),
-              colorBackground: AppColors.mainColor,
             )
           ],
         );

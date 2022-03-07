@@ -17,10 +17,11 @@ import '../cart_page/cart_page.dart';
 import 'components/bottom_bar_top.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  const RecommendedFoodDetail({Key? key, required this.pageId})
+  const RecommendedFoodDetail({Key? key, required this.pageId, required this.page})
       : super(key: key);
 
   final int pageId;
+  final String page;
 
   @override
   Widget build(BuildContext context) {
@@ -38,56 +39,63 @@ class RecommendedFoodDetail extends StatelessWidget {
             pinned: true,
             collapsedHeight: 80,
             backgroundColor: AppColors.yellowColor,
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconBackgroundBorderRadius(
-                    icon: Icons.clear,
-                    press: () {
-                      Get.toNamed(RouteHelper.initial);
-                    }),
-                GetBuilder<PopularProductController>(builder: (controller) {
-                  return Stack(
-                    children: [
-                      IconBackgroundBorderRadius(
-                        icon: Icons.shopping_cart_outlined,
-                        press: () {
-                          Get.to(()=> CartPage());
-                        },
-                      ),
-                      Get.find<PopularProductController>().totalItems >= 1
-                          ? Positioned(
-                              right: 0,
-                              top: 0,
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  IconBackgroundBorderRadius(
-                                    icon: Icons.circle,
-                                    size: 20,
-                                    iconColor: Colors.transparent,
-                                    backgroundColor: AppColors.mainColor,
-                                    sizeHeight: 20,
-                                    press: () {},
-                                  ),
-                                  Align(
-                                      alignment: Alignment.center,
-                                      child: BigText(
-                                        text:
-                                            Get.find<PopularProductController>()
-                                                .totalItems
-                                                .toString(),
-                                        color: Colors.white,
-                                        size: Dimensions.font12,
-                                      )),
-                                ],
-                              ),
-                            )
-                          : Container(),
-                    ],
-                  );
-                }),
-              ],
+            title: Container(
+              margin: EdgeInsets.only(top: Dimensions.height10,bottom: Dimensions.height10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconBackgroundBorderRadius(
+                      icon: Icons.clear,
+                      press: () {
+                        if(page == "cartpage"){
+                          Get.toNamed(RouteHelper.cartPage);
+                        }else{
+                          Get.toNamed(RouteHelper.initial);
+                        }
+                      }),
+                  GetBuilder<PopularProductController>(builder: (controller) {
+                    return Stack(
+                      children: [
+                        IconBackgroundBorderRadius(
+                          icon: Icons.shopping_cart_outlined,
+                          press: () {
+                            Get.toNamed(RouteHelper.cartPage);
+                          },
+                        ),
+                        Get.find<PopularProductController>().totalItems >= 1
+                            ? Positioned(
+                                right: 0,
+                                top: 0,
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    IconBackgroundBorderRadius(
+                                      icon: Icons.circle,
+                                      size: 20,
+                                      iconColor: Colors.transparent,
+                                      backgroundColor: AppColors.mainColor,
+                                      sizeHeight: 20,
+                                      press: () {},
+                                    ),
+                                    Align(
+                                        alignment: Alignment.center,
+                                        child: BigText(
+                                          text:
+                                              Get.find<PopularProductController>()
+                                                  .totalItems
+                                                  .toString(),
+                                          color: Colors.white,
+                                          size: Dimensions.font12,
+                                        )),
+                                  ],
+                                ),
+                              )
+                            : Container(),
+                      ],
+                    );
+                  }),
+                ],
+              ),
             ),
             bottom: PreferredSize(
                 preferredSize: Size.fromHeight(Dimensions.height20),

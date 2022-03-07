@@ -35,14 +35,14 @@ class BottomBarBottom extends StatelessWidget {
                   child: Icon(Icons.favorite,color: AppColors.mainColor,size: Dimensions.font26
                     ,)),),
               //addToCard
-              ButtonBorderRadius(widget: GestureDetector(
+              GestureDetector(
                 onTap: (){
                   controller.addItem(product);
                 },
-                child: Container(
+                child: ButtonBorderRadius(widget: Container(
                     margin: EdgeInsets.all(Dimensions.width5),
-                    child: BigText(text: "\$ ${product.price!} | Add to cart",color: Colors.white,)),
-              ),colorBackground: AppColors.mainColor,)
+                    child: BigText(text: "\$ ${product.price!} | Add to cart",color: Colors.white,)),colorBackground: AppColors.mainColor,),
+              )
             ],
           );
         }

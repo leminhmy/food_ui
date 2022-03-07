@@ -1,14 +1,8 @@
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_ui/components/big_text.dart';
-import 'package:food_ui/utils/dimensions.dart';
-import 'package:food_ui/components/icon_and_text.dart';
-import 'package:food_ui/components/small_text.dart';
+import 'package:food_ui/screens/cart_history_page/cart_history_page.dart';
 import 'package:food_ui/utils/colors.dart';
-
-import 'components/app_bar_home.dart';
-import 'components/banner_food.dart';
-import 'components/products.dart';
+import 'components/main_home_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -18,28 +12,61 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+
+  List page = [
+    MainHomePage(),
+    Container(
+      child: Center(child: Text("Next page")),
+    ),
+    CartHistoryPage(),
+    Container(
+      child: Center(child: Text("Next page page page")),
+    ),
+  ];
+
+
+  void onTapNav(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const AppBarHome(),
-            SizedBox(
-              height: Dimensions.height20,
-            ),
-            const BannerFood(),
-            SizedBox(
-              height: Dimensions.height30,
-            ),
-            const Products(),
-          ],
-        ),
+      body: page[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: AppColors.mainColor,
+        unselectedItemColor: Colors.amberAccent,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        currentIndex: _selectedIndex,
+        onTap: onTapNav,
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home_outlined),
+
+            label: "home",
+
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.archive),
+            label: "history",
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_cart_outlined),
+            label: "cart",
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+            label: "me",
+          ),
+        ],
       ),
     );
   }
+
+
 }
-
-

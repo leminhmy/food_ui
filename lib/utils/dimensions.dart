@@ -50,4 +50,6 @@ class Dimensions {
   static double iconSize24 = screenHeight/35.17;
   static double iconSize26 = screenHeight/32.46;
 
+  //splash screen dimensions
+  static double splashImg = screenHeight/3.38;
 }

@@ -72,7 +72,7 @@ class CartItem extends StatelessWidget {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  cartController.setQuantity(cartModel, false);
+                                  cartController.addItem(cartModel.product!, -1);
                                 },
                                 child: Icon(
                                   Icons.remove,
@@ -88,6 +88,7 @@ class CartItem extends StatelessWidget {
                               ),
                               InkWell(
                                 onTap: () {
+                                  cartController.addItem(cartModel.product!, 1);
                                 },
                                 child: Icon(
                                   Icons.add,

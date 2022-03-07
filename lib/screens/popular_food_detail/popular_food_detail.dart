@@ -16,8 +16,9 @@ import 'package:get/get.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   int pageId;
+  final String page;
 
-  PopularFoodDetail({Key? key, required this.pageId}) : super(key: key);
+  PopularFoodDetail({Key? key, required this.pageId,required this.page}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class PopularFoodDetail extends StatelessWidget {
             right: Dimensions.width20,
             left: Dimensions.width20,
             top: Dimensions.height20,
-            child: appBarActions(),
+            child: appBarActions(page),
           ),
           Positioned(
             right: 0,
@@ -62,14 +63,18 @@ imageAppbar(ProductsModel product) {
       ));
 }
 
-appBarActions() {
+appBarActions(String page) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
       IconBackgroundBorderRadius(
         icon: Icons.arrow_back_ios_outlined,
         press: () {
-          Get.toNamed(RouteHelper.initial);
+          if( page == "cartpage"){
+            Get.toNamed(RouteHelper.getCartPage());
+          }else{
+            Get.toNamed(RouteHelper.getInitial());
+          }
         },
       ),
       GetBuilder<PopularProductController>(builder: (controller) {
@@ -78,8 +83,7 @@ appBarActions() {
             IconBackgroundBorderRadius(
               icon: Icons.shopping_cart_outlined,
               press: () {
-                Get.to(()=> CartPage());
-                print("tap");
+                Get.toNamed(RouteHelper.cartPage);
               },
             ),
             Get.find<PopularProductController>().totalItems >= 1

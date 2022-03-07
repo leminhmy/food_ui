@@ -43,7 +43,7 @@ listProduct(RecommendedProductController recommendedProduct) {
       itemBuilder: (context, index) {
         return  GestureDetector(
             onTap: (){
-              Get.toNamed(RouteHelper.getRecommendedFood(index));
+              Get.toNamed(RouteHelper.getRecommendedFood(index, "home"));
             },
             child: ProductCard(recommendedProduct: recommendedProduct.recommendedProductList[index],));
       });

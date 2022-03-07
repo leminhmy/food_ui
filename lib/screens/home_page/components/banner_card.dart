@@ -66,7 +66,7 @@ class BannerCard extends StatelessWidget {
               //imageBackground banner
               GestureDetector(
                 onTap: (){
-                  Get.toNamed(RouteHelper.getPopularFood(index));
+                  Get.toNamed(RouteHelper.getPopularFood(index, "Home"));
                 },
                 child: Container(
                   height: Dimensions.pageViewContainer,
