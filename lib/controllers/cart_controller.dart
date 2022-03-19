@@ -39,6 +39,8 @@ class CartController extends GetxController {
           title: "You want delete it!",
           onConfirm: (){
             _items.remove(product.id);
+            //update storageCart.
+            cartRepo.addToCartList(getItems);
             update();
             Get.back();
           },
@@ -55,6 +57,8 @@ class CartController extends GetxController {
                 product: product,
               );
             });
+            //update storageCart.
+            cartRepo.addToCartList(getItems);
             update();
             return true;
           },
@@ -71,6 +75,8 @@ class CartController extends GetxController {
                 product: product,
               );
             });
+            //update storageCart.
+            cartRepo.addToCartList(getItems);
             update();
           },
           textConfirm: "Yes",
@@ -102,6 +108,7 @@ class CartController extends GetxController {
         );
       }
     }
+    //update storageCart.
     cartRepo.addToCartList(getItems);
     update();
   }
@@ -173,5 +180,19 @@ class CartController extends GetxController {
 
   List<CartModel> getCartHistoryList(){
     return cartRepo.getCartHistoryList();
+  }
+
+  set setItems(Map<int, CartModel> setItems){
+    _items = {};
+      _items = setItems;
+  }
+
+  void addToCartList(){
+    cartRepo.addToCartList(getItems);
+    update();
+  }
+  void clearCartHistory(){
+    cartRepo.clearCarthistory();
+    update();
   }
 }

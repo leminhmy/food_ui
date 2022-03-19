@@ -3,6 +3,9 @@ import 'package:food_ui/controllers/cart_controller.dart';
 import 'package:food_ui/controllers/popular_product_controller.dart';
 import 'package:food_ui/controllers/recommended_product_controller.dart';
 import 'package:food_ui/routes/route_helper.dart';
+import 'package:food_ui/screens/account_page/account_page.dart';
+import 'package:food_ui/screens/auth/sign_in_page.dart';
+import 'package:food_ui/screens/auth/sign_up_page.dart';
 import 'package:food_ui/screens/cart_history_page/cart_history_page.dart';
 import 'package:food_ui/screens/home_page/home_page.dart';
 import 'package:food_ui/screens/popular_food_detail/popular_food_detail.dart';
@@ -33,7 +36,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          // home: const CartHistoryPage(),
+          // home: const SignInPage(),
           initialRoute: RouteHelper.getSplashPage(),
           getPages: RouteHelper.routes,
         );

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_ui/controllers/auth_controller.dart';
+import 'package:food_ui/routes/route_helper.dart';
 import 'package:get/get.dart';
 
 import '../../../components/big_text.dart';
@@ -6,6 +8,7 @@ import '../../../components/button_border_radius.dart';
 import '../../../controllers/cart_controller.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/dimensions.dart';
+import 'package:get/get.dart';
 
 class BottomBarCart extends StatelessWidget {
   const BottomBarCart({
@@ -15,6 +18,7 @@ class BottomBarCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: Dimensions.height30*4,
       padding: EdgeInsets.symmetric(
           horizontal: Dimensions.width20, vertical: Dimensions.height30),
       decoration: BoxDecoration(
@@ -25,7 +29,7 @@ class BottomBarCart extends StatelessWidget {
       ),
       child: GetBuilder<CartController>(
         builder: (cartController) {
-          return Row(
+          return cartController.getItems.length>0?Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               //quantity
@@ -37,7 +41,14 @@ class BottomBarCart extends StatelessWidget {
               //addToCard
               GestureDetector(
                 onTap: (){
-                  cartController.addToHistory();
+                  if(Get.find<AuthController>().userLoggedIn())
+                    {
+                      print("tapped");
+                      cartController.addToHistory();
+                    }
+                  else{
+                    Get.toNamed(RouteHelper.getSignInPage());
+                  }
                 },
                 child: ButtonBorderRadius(
                   widget: BigText(
@@ -48,7 +59,7 @@ class BottomBarCart extends StatelessWidget {
                 ),
               )
             ],
-          );
+          ):Container();
         }
       ),
     );

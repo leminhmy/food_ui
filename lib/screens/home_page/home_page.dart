@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_ui/screens/account_page/account_page.dart';
+import 'package:food_ui/screens/auth/sign_in_page.dart';
+import 'package:food_ui/screens/auth/sign_up_page.dart';
 import 'package:food_ui/screens/cart_history_page/cart_history_page.dart';
 import 'package:food_ui/utils/colors.dart';
 import 'components/main_home_page.dart';
@@ -16,13 +19,9 @@ class _HomePageState extends State<HomePage> {
 
   List page = [
     MainHomePage(),
-    Container(
-      child: Center(child: Text("Next page")),
-    ),
+    Container(child: Text("historycart"),),
     CartHistoryPage(),
-    Container(
-      child: Center(child: Text("Next page page page")),
-    ),
+    AccountPage(),
   ];
 
 
@@ -53,11 +52,11 @@ class _HomePageState extends State<HomePage> {
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.archive),
-            label: "history",
+            label: "date",
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.shopping_cart_outlined),
-            label: "cart",
+            label: "cart history",
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.person),

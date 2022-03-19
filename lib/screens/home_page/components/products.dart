@@ -25,8 +25,11 @@ class Products extends StatelessWidget {
             height: Dimensions.height30,
           ),
           GetBuilder<RecommendedProductController>(builder: (recommendedProduct){
-            return recommendedProduct.isLoaded?listProduct(recommendedProduct):
-            CircularProgressIndicator(color: AppColors.mainColor,);
+            if (recommendedProduct.isLoaded) {
+              return listProduct(recommendedProduct);
+            } else {
+              return Center(child: CircularProgressIndicator(color: AppColors.mainColor,));
+            }
 
           })
         ],
