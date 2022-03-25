@@ -13,10 +13,10 @@ class UserController extends GetxController implements GetxService {
 
 
   bool _isLoading = false;
-  late UserModel _userModel;
-
+  // late UserModel _userModel;
+  UserModel? _userModel;
   bool get isLoading => _isLoading;
-  UserModel get userModel => _userModel;
+  UserModel? get userModel => _userModel;
 
   Future<ResponseModel> getUserInfo() async {
 

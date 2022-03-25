@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_ui/controllers/auth_controller.dart';
+import 'package:food_ui/controllers/location_controller.dart';
 import 'package:food_ui/routes/route_helper.dart';
 import 'package:get/get.dart';
 
@@ -43,6 +44,10 @@ class BottomBarCart extends StatelessWidget {
                 onTap: (){
                   if(Get.find<AuthController>().userLoggedIn())
                     {
+                      print("Logged in?");
+                      if(Get.find<LocationController>().addressList.isEmpty){
+                        Get.toNamed(RouteHelper.getAddressPage());
+                      }
                       print("tapped");
                       cartController.addToHistory();
                     }
